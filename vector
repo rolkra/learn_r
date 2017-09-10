@@ -1,6 +1,0 @@
-# a vecor contains elements of the same type
-a <- c(1,2,3,4,5)
-a <- 1:5
-
-# add an element to a vector
-a <- c(a, 6)
