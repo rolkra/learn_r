@@ -29,8 +29,8 @@ gender <- factor(a, levels = c(1,2), labels = c("M","F"))
 gender <- factor(gender, levels = c(2,1))   # change order of factors
 
 # order of factors
-a <- c("churn", "no churn", "no churn", "churn")
-target <- factor(a, levels = c("churn", "no churn"))
+target <- c("churn", "no churn", "no churn", "churn")
+target <- factor(target, levels = c("churn", "no churn"))
 target
 target <- factor(target, levels = c("no churn", "churn")) 
 target
