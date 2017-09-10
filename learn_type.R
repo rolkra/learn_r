@@ -26,6 +26,14 @@ l[[2]]  # returns a vector
 # factors
 a <- c(1,2,1,2,1,2,2,2,1,1,1,2,1,2,2)
 gender <- factor(a, levels = c(1,2), labels = c("M","F"))
+gender <- factor(gender, levels = c(2,1))   # change order of factors
+
+# order of factors
+a <- c("churn", "no churn", "no churn", "churn")
+target <- factor(a, levels = c("churn", "no churn"))
+target
+target <- factor(target, levels = c("no churn", "churn")) 
+target
 
 # convert numeric to category (cut)
 a <- 1:100
