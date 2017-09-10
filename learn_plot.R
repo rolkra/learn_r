@@ -41,3 +41,23 @@ boxplot(df$Petal.Width, main="Width of Pedal", col="grey")
 
 # reset display
 dev.off()
+
+#############################################################################
+## Colors
+#############################################################################
+
+# show list of pre defined colors
+colors()
+
+# use RColorBrewer to find nice colors
+library(RColorBrewer)
+
+# display.brewer.all()
+# display.brewer.pal(9, "Blues")
+wc_col <- brewer.pal(9, "Blues")  # color blue in 9 steps
+wc_col <- wc_col[c(-1,-2)]        # remove first two colors
+
+# dark green "#7dba00", medium green "#add35e", light green "#d8eab2"
+# dark grey "#525252", medium grey "#7f7f7f", light grey "#b2b2b2", very light grey "#cccccc"
+
+
