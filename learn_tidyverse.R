@@ -42,6 +42,9 @@ df %>% ggplot(aes(Species)) + geom_bar()
 df %>% ggplot(aes(x = Sepal.Length, y = Sepal.Width)) + geom_point()
 df %>% ggplot(aes(x = Sepal.Length, y = Sepal.Width)) + geom_point() + geom_abline(intercept = -2.5, slope = 1)
 
+# orientation of text on x-axis 90°
++ theme(axis.text.x = element_text(angle = 90))
+
 #############################################################################
 ## map functions
 #############################################################################
