@@ -1,2 +1,2 @@
-# r_learnings
-collection of useful r code
+# learn_r
+collection of useful R code
