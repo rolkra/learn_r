@@ -33,6 +33,11 @@ cut(a, breaks = 4, labels = c("LOW","MEDIUM","HIGH","EXTREME"))
 cut(a, breaks = c(0,25,50,75,Inf), labels = c("LOW","MEDIUM","HIGH","EXTREME"))
 cut(a, breaks = quantile(a, c(0,0.5,1)), labels = c("LOW","HIGH"))
 
+# boolean
+a <- c(FALSE, TRUE, FALSE)
+any(a)                  # TRUE, if any element of vector is TRUE
+as.logical(c(0,1,2,3))  # 0 = TRUE, >0 = FALSE
+
 # date
 x <- as.Date("2017-01-02")
 x + 1
