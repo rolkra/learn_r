@@ -11,14 +11,21 @@ if (1 == 1) print("yes") else print("no")
 if (1 == 1) {print("yes")} else {print("no")}
 
 #############################################################################
-## Class
+## tidy evaluation
 #############################################################################
 
-myobject <- setClass(Class="myclass", slots=list(cod="character",lbl="character",ord="numeric"))
+library(dplyr)
+df <- iris
 
-p1 <- myobject (cod=c("a","b","c"), 
-                lbl=c("label_a","label_b","label_c"), 
-                ord=c(1,2,3))
+my_count <- function(df, group_by) {
+  group_by <- enquo(group_by)
+  print(group_by)
+  
+  df %>%
+    count(!!group_by)
+}
+
+my_count(df, Sepal.Length)
 
 #############################################################################
 ## Error Handling
@@ -29,3 +36,14 @@ result <- tryCatch({
 },
 error = print
 )
+
+#############################################################################
+## Class
+#############################################################################
+
+myobject <- setClass(Class="myclass", slots=list(cod="character",lbl="character",ord="numeric"))
+
+p1 <- myobject (cod=c("a","b","c"), 
+                lbl=c("label_a","label_b","label_c"), 
+                ord=c(1,2,3))
+
