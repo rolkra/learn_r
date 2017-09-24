@@ -1,0 +1,16 @@
+#############################################################################
+## string
+#############################################################################
+
+# length of a string
+nchar("hello world")
+
+# lower and upper case
+tolower("Xx")
+toupper("Xx")
+
+# convert number to a formatted string (european style)
+format(12345.67, big.mark = ".", decimal.mark = ",", digits = 15)
+
+# substring
+substr("hello world", 1,5)
