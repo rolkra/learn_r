@@ -48,9 +48,9 @@ error = print
 ## Class
 #############################################################################
 
-myobject <- setClass(Class="myclass", slots=list(cod="character",lbl="character",ord="numeric"))
+myobject <- setClass(Class = "myclass", slots = list(cod = "character", lbl = "character", ord = "numeric"))
 
-p1 <- myobject (cod=c("a","b","c"), 
-                lbl=c("label_a","label_b","label_c"), 
-                ord=c(1,2,3))
+p1 <- myobject (cod = c("a","b","c"), 
+                lbl = c("label_a","label_b","label_c"), 
+                ord = c(1,2,3))
 
