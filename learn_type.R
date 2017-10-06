@@ -12,6 +12,10 @@ is.factor(gender)
 is.character(gender)
 typeof(gender)
 
+# convert float to integer
+round(1.2, 0)   # returns 1
+ceiling(1.2)    # returns 2 (rounded to next higher integer)
+
 # convert numeric to character
 a <- c(1,2,1,2,1,2,2,2,1,1,1,2,1,2,2)
 b <- as.character(a)
