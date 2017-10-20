@@ -39,6 +39,11 @@ target
 target <- factor(target, levels = c("no churn", "churn")) 
 target
 
+# level of factors
+f <- factor(LETTERS[1:5], levels = LETTERS[1:6])
+table(f)                # Level F with 0 
+table(droplevels(f))    # Only Level A-E
+
 # convert numeric to category (cut)
 a <- 1:100
 cut(a, breaks = 4, labels = c("LOW","MEDIUM","HIGH","EXTREME"))
