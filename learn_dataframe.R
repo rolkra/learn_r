@@ -70,5 +70,7 @@ length(Species)
 detach (df)
 
 # data transformation in base R
+df <- iris            
 subset(df,Species != "setosa")
 transform(df, Sepal.Length = -Sepal.Length)
+order(df$Sepal.Length)
