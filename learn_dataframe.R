@@ -62,9 +62,10 @@ length(df$Species)
 # number of rows with no NULL-value
 sum(complete.cases(df$Species))
 # number of rows with NULL-Value
-length(df$Species) - sum (complete.cases(df$Species))
+length(df$Species) - sum(complete.cases(df$Species))
 
 # attach, detach
+df <- iris
 attach (df)
 length(Species)
 detach (df)
