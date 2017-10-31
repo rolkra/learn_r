@@ -9,26 +9,44 @@ library(tidyverse)
 ## dplyr
 #############################################################################
 
-data <- iris
-data %>% glimpse()
-data %>% 
+
+# glimpse
+iris %>% glimpse()
+
+# grammar of data manipulation
+iris %>% 
   select(Sepal.Length, Sepal.Width, Species) %>% 
   filter(Species == "setosa") %>% 
   mutate(sepal.Calc = Sepal.Length + Sepal.Width) %>% 
   arrange(desc(sepal.Calc))
 
-data %>% count(Species)
-data %>% distinct(Species)
-
-data %>% 
+# group by
+iris %>% 
   group_by(Species) %>% 
   summarize(mean_sl = mean(Sepal.Length), max_sl = max(Sepal.Length), n = n())
+  
+# count (setosa 50, versicolor 50, virginica 50)
+iris %>% count(Species)
 
-data %>% select(starts_with("Sepal"))
-data %>% select(ends_with("Length"))
-data %>% select(contains("al"))
-data %>% select(matches("Se.?"))
+# distinct values (setosa, versicolor, virginica)
+iris %>% distinct(Species)
 
+# number of distinct values (3)
+iris %>% summarise(species = n_distinct(Species))
+
+# select
+iris %>% select(starts_with("Sepal"))
+iris %>% select(ends_with("Length"))
+iris %>% select(contains("al"))
+iris %>% select(matches("Se.?"))
+
+# random sample
+iris %>% sample_n(10)
+
+# stratified sample
+iris %>% group_by(Species) %>% sample_n(10)
+
+# translate to sql
 translate_sql(data %>% group_by(Species) %>% summarize(n = n()))
 
 #############################################################################
