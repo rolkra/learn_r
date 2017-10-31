@@ -75,3 +75,12 @@ df <- iris
 subset(df,Species != "setosa")
 transform(df, Sepal.Length = -Sepal.Length)
 order(df$Sepal.Length)
+
+# table
+table(iris$Species)
+
+# prop.table
+m <- matrix(1:4, nrow = 2)
+prop.table(m)     # total 100%
+prop.table(m, 1)  # each row = 100%
+prop.table(m, 2)  # each column = 100%
