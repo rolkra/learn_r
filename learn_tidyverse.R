@@ -85,6 +85,10 @@ iris %>% ggplot(aes(Sepal.Length)) +
   geom_density(color = "blue", fill = "blue") +
   facet_wrap(~ Species)
 
+# overlapping density plot
+iris %>% ggplot(aes(Sepal.Length, fill = Species)) +
+  geom_density(alpha = 0.3)
+
 # orientation of text on x-axis 90°
 + theme(axis.text.x = element_text(angle = 90))
 
