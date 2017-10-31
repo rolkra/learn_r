@@ -69,10 +69,16 @@ translate_sql(data %>% group_by(Species) %>% summarize(n = n()))
 
 library(ggplot2)
 
+# examples
 df <- iris
 df %>% ggplot(aes(Species)) + geom_bar()
 df %>% ggplot(aes(x = Sepal.Length, y = Sepal.Width)) + geom_point()
 df %>% ggplot(aes(x = Sepal.Length, y = Sepal.Width)) + geom_point() + geom_abline(intercept = -2.5, slope = 1)
+
+# percentage bar chart
+comics %>% ggplot(aes(x = id, fill = align)) +
+  geom_bar(position = "fill") +
+  ylab("proportion)
 
 # orientation of text on x-axis 90°
 + theme(axis.text.x = element_text(angle = 90))
