@@ -78,7 +78,12 @@ df %>% ggplot(aes(x = Sepal.Length, y = Sepal.Width)) + geom_point() + geom_abli
 # percentage bar chart
 comics %>% ggplot(aes(x = id, fill = align)) +
   geom_bar(position = "fill") +
-  ylab("proportion)
+  ylab("proportion")
+
+# facet wrap
+iris %>% ggplot(aes(Sepal.Length)) +
+  geom_density(color = "blue", fill = "blue") +
+  facet_wrap(~ Species)
 
 # orientation of text on x-axis 90°
 + theme(axis.text.x = element_text(angle = 90))
