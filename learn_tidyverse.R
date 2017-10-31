@@ -9,16 +9,27 @@ library(tidyverse)
 ## dplyr
 #############################################################################
 
+# converte dataframe to tibble
+tbl_iris <- tbl_df(iris)
+
 # glimpse
 iris %>% glimpse()
 
 # grammar of data manipulation
+# select(), which returns a subset of the columns,
+# filter(), that is able to return a subset of the rows,
+# arrange(), that reorders the rows according to single or multiple variables,
+# mutate(), used to add columns from existing data,
+# summarise(), which reduces each group to a single row by calculating aggregate measures.
+
 iris %>% 
   select(Sepal.Length, Sepal.Width, Species) %>% 
   filter(Species == "setosa") %>% 
   mutate(sepal.Calc = Sepal.Length + Sepal.Width) %>% 
   arrange(desc(sepal.Calc))
 
+iris %>% summarise(mean_sl = mean(Sepal.Length, na.rm = TRUE))
+  
 # group by
 iris %>% 
   group_by(Species) %>% 
@@ -38,12 +49,16 @@ iris %>% select(starts_with("Sepal"))
 iris %>% select(ends_with("Length"))
 iris %>% select(contains("al"))
 iris %>% select(matches("Se.?"))
+iris %>% select(-2)
 
 # random sample
 iris %>% sample_n(10)
 
 # stratified sample
 iris %>% group_by(Species) %>% sample_n(10)
+
+# rank
+iris %>% mutate(rank = rank(Sepal.Length)) %>% arrange(-rank)
 
 # translate to sql
 translate_sql(data %>% group_by(Species) %>% summarize(n = n()))
