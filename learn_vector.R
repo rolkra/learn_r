@@ -62,6 +62,16 @@ quantile(a,0.05)      # Wert bei 10% Quantile
 quantile(a,0.95)      # Wert bei 10% Quantile
 quantile(a, c(0.05, 0.10, 0.5, 0.90, 0.95))
 
+# mean, median, mode, IQR (inter quantile range)
+a <- c(0:100)
+mean(a)     # average = 50
+median(a)   # 50% are max 50
+IQR(a)      # 75 - 25 = 50
+
+# var, sd
+var(0:100)  # 858.5
+sd(0:100)   # 29.3 (square root of var)
+
 # table shows frequency of elements
 a <- c(1:10,6:12,10:15)
 table (a)
