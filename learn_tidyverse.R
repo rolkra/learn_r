@@ -69,25 +69,30 @@ translate_sql(data %>% group_by(Species) %>% summarize(n = n()))
 
 library(ggplot2)
 
-# examples
-df <- iris
-df %>% ggplot(aes(Species)) + geom_bar()
-df %>% ggplot(aes(x = Sepal.Length, y = Sepal.Width)) + geom_point()
-df %>% ggplot(aes(x = Sepal.Length, y = Sepal.Width)) + geom_point() + geom_abline(intercept = -2.5, slope = 1)
+# points
+iris %>% ggplot(aes(x = Sepal.Length, y = Sepal.Width)) + geom_point()
+iris %>% ggplot(aes(x = Sepal.Length, y = Sepal.Width)) + geom_point() + geom_abline(intercept = -2.5, slope = 1)
+
+# boxplot
+iris %>% ggplot(aes(x = Species, y = Sepal.Length)) + geom_boxplot()
+iris %>% ggplot(aes(x = 1, y = Sepal.Length)) + geom_boxplot()
+
+# bar chart
+iris %>% ggplot(aes(Species)) + geom_bar()
 
 # percentage bar chart
 comics %>% ggplot(aes(x = id, fill = align)) +
   geom_bar(position = "fill") +
   ylab("proportion")
 
+# density plot (overlapping)
+iris %>% ggplot(aes(Sepal.Length, fill = Species)) +
+  geom_density(alpha = 0.3)
+
 # facet wrap
 iris %>% ggplot(aes(Sepal.Length)) +
   geom_density(color = "blue", fill = "blue") +
   facet_wrap(~ Species)
-
-# overlapping density plot
-iris %>% ggplot(aes(Sepal.Length, fill = Species)) +
-  geom_density(alpha = 0.3)
 
 # orientation of text on x-axis 90°
 + theme(axis.text.x = element_text(angle = 90))
