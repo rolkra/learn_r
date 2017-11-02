@@ -72,6 +72,7 @@ library(ggplot2)
 # points
 iris %>% ggplot(aes(x = Sepal.Length, y = Sepal.Width)) + geom_point()
 iris %>% ggplot(aes(x = Sepal.Length, y = Sepal.Width)) + geom_point() + geom_abline(intercept = -2.5, slope = 1)
+iris %>% ggplot(aes(x = Sepal.Length, y = Sepal.Width)) + geom_point(shape = 21, size = 1.5, color = "red", fill = "white")
 
 # boxplot
 iris %>% ggplot(aes(x = Species, y = Sepal.Length)) + geom_boxplot()
