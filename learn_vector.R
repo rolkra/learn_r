@@ -75,3 +75,8 @@ sd(0:100)   # 29.3 (square root of var)
 # table shows frequency of elements
 a <- c(1:10,6:12,10:15)
 table (a)
+
+# logical operators on vectors
+c(TRUE, TRUE, TRUE) & c(TRUE, FALSE, TRUE)   # result = TRUE, FALSE, TRUE
+c(TRUE, TRUE, TRUE) & c(TRUE, FALSE, TRUE)   # result = TRUE (only first element of vector)
+
