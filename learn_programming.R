@@ -24,13 +24,14 @@ for (i in seq_along(a)) {
 library(dplyr)
 df <- iris
 
-my_count <- function(df, group_by) {
-  group_by <- enquo(group_by)
-  print(group_by)                       # parameter as quosure
-  print(quo_name(group_by)[[1]])        # parameter as text
+my_count <- function(df, group) {
+  group_quo <- enquo(group)
+  group_txt <- quo_name(group_by)[[1]])
+  print(group_quo)        # parameter as quosure
+  print(group_txt)        # parameter as text
   
   df %>%
-    count(!!group_by)
+    count(!!group_quo)
 }
 
 my_count(df, Sepal.Length)
