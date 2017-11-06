@@ -9,6 +9,7 @@ ifelse (a,1,2)
 if (1 == 1) print("yes")
 if (1 == 1) print("yes") else print("no")
 if (1 == 1) {print("yes")} else {print("no")}
+if (1 == 0) {print("not possible")} else if (1 == 1) {print("equal")}
 
 # for
 a <- LETTERS[1:10]
