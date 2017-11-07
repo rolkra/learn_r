@@ -11,13 +11,13 @@ if (1 == 1) print("yes") else print("no")
 if (1 == 1) {print("yes")} else {print("no")}
 if (1 == 0) {print("not possible")} else if (1 == 1) {print("equal")}
 
-# for
+# for (break, next)
 a <- LETTERS[1:10]
 for (i in seq_along(a)) {
   cat(a[i])
 }
 
-# while
+# while (break)
 a <- 1
 while (a <= 10) {
   print(a)
