@@ -13,6 +13,9 @@ if (1 == 0) {print("not possible")} else if (1 == 1) {print("equal")}
 
 # for (break, next)
 a <- LETTERS[1:10]
+for (letter in a) {
+  cat(letter)
+}
 for (i in seq_along(a)) {
   cat(a[i])
 }
