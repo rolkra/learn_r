@@ -48,7 +48,7 @@ sapply(a, function(x) {x*2})
 l <- list(a = c(1:5), b = c(2:6))
 unlist(lapply(l, mean))
 
-# sapply (output is unlisted)
+# sapply (output is simple)
 a <- c(1:10)
 sapply(a, function(x) {x*2})
 
