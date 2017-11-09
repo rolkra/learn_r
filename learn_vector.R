@@ -81,3 +81,5 @@ table (a)
 c(TRUE, TRUE, TRUE) & c(TRUE, FALSE, TRUE)   # result = TRUE, FALSE, TRUE
 c(TRUE, TRUE, TRUE) & c(TRUE, FALSE, TRUE)   # result = TRUE (only first element of vector)
 
+# sort a vector
+sort(1:10, decreasing = TRUE)
