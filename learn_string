@@ -17,3 +17,10 @@ substr("hello world", 1,5)
 
 # string split
 unlist(strsplit("hello world", " "))
+
+# grep / grepl (finding pattern in string)
+names <- c("Roland", "Lisa", "Josef")
+l <- grepl("o", names)      # returns logical vector
+names[l]
+n <- grep("o", names)       # returns position
+names[n]
