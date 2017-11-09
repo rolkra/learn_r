@@ -18,8 +18,9 @@ a+1                   # add 1 to each element in list: 2,3,4
 
 a <- c(1,2,3)
 b <- c(1,2,3)
-a+b                   # Add each corresponding element: 2,4,6
-c(a,b)                # Merge Vectors: 1,2,3,1,2,3
+a+b                   # add each corresponding element: 2,4,6
+c(a,b)                # merge Vectors: 1,2,3,1,2,3
+append(a, b)          # merge vector using append
 
 a<-c(1:100)
 a[2:5]                # subset vector
