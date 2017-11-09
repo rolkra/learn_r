@@ -28,12 +28,17 @@ while (a <= 10) {
 }
 
 #############################################################################
-## Function
+## function
 #############################################################################
 
+# function definition
 add_one <- function(x) {
   return(x + 1) 
 }
+
+# anonymous function (function without a name)
+a <- c(1:10)
+sapply(a, function(x) {x*2})
 
 #############################################################################
 ## apply
@@ -42,6 +47,10 @@ add_one <- function(x) {
 # lapply (input is vector or list, output is a list)
 l <- list(a = c(1:5), b = c(2:6))
 unlist(lapply(l, mean))
+
+# sapply (output is unlisted)
+a <- c(1:10)
+sapply(a, function(x) {x*2})
 
 #############################################################################
 ## tidy evaluation
