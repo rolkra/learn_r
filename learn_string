@@ -24,3 +24,9 @@ l <- grepl("o", names)      # returns logical vector
 names[l]
 n <- grep("o", names)       # returns position
 names[n]
+
+grepl("^he", "hello.world")       # starting with
+grepl("ld$", "hello.world")       # ends with
+grepl("\\.w", "hello.world")      # contains .w
+grepl("ll.*l", "hello.world")     # contains ll (any characters) l
+
