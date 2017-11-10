@@ -61,10 +61,11 @@ df <- iris
 
 my_count <- function(df, group) {
   group_quo <- enquo(group)
-  group_txt <- quo_name(group_by)[[1]])
+  group_txt <- quo_name(group_quo)[[1]]
+
   print(group_quo)        # parameter as quosure
   print(group_txt)        # parameter as text
-  
+
   df %>%
     count(!!group_quo)
 }
