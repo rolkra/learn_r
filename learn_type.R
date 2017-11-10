@@ -63,8 +63,22 @@ as.Date("24.12.2017", format = "%d.%m.%Y")
 
 today <- Sys.Date()     # date yyyymmdd
 unclass(today)          # integer (days since 1970-01-01)
+
+# convert date to text
+format(Sys.Date(), "%Y")    # year YYYY
+format(Sys.Date(), "%m")    # month
+format(Sys.Date(), "%B")    # month name
+format(Sys.Date(), "%d")    # day
+format(Sys.Date(), "%A")    # day name
+
+# time
+as.POSIXct("2017-12-24 12:00:00", format = "%Y-%m-%d %H:%M:%S")
+
 now <- Sys.time()       # date time in POSIXct format
 unclass(now)            # integer (seconds since 1970-01-01 00:00)
+
+# convert time to text
+format(Sys.time(), "%H:%M:%S")
 
 # unknown value
 x <- NA
