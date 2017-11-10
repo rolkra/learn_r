@@ -58,6 +58,13 @@ as.logical(c(0,1,2,3))  # 0 = TRUE, >0 = FALSE
 # date
 x <- as.Date("2017-01-02")
 x + 1
+as.Date("24-12-17", format = "%d-%m-%y")
+as.Date("24.12.2017", format = "%d.%m.%Y")
+
+today <- Sys.Date()     # date yyyymmdd
+unclass(today)          # integer (days since 1970-01-01)
+now <- Sys.time()       # date time in POSIXct format
+unclass(now)            # integer (seconds since 1970-01-01 00:00)
 
 # unknown value
 x <- NA
