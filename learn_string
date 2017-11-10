@@ -30,3 +30,7 @@ grepl("ld$", "hello.world")       # ends with
 grepl("\\.w", "hello.world")      # contains .w
 grepl("ll.*l", "hello.world")     # contains ll (any characters) l
 
+# sub / gsub (replace patterin in string)
+sub("l", "_", "hello.world")      # replaces only first
+gsub("l", "_", "hello.world")     # replace all
+
