@@ -1,8 +1,7 @@
 #############################################################################
-## model
+# simple regression model
 #############################################################################
 
-# simple regression model
 df <- iris 
 x <- df$Sepal.Length
 y <- df$Petal.Length
@@ -17,7 +16,25 @@ predict(mod)      # predicts
 library(broom)
 augment(mod)      # creates a dataframe with real values, predicted values, residuals, ...
 
+
+#############################################################################
 # clustering (kmeans)
+#############################################################################
+
 cl <- kmeans(iris[-5], 3)       # dont use species of iris, 3 centers
 table(cl$cluster, iris$Species) # compare cluster with species
 plot(iris$Sepal.Length, iris$Sepal.Width, col = cl$cluster)
+
+
+#############################################################################
+# classification (decision tree)
+#############################################################################
+
+library(rpart)
+mod <- rpart(Species ~ Sepal.Length + Sepal.Width, 
+             data = iris,
+             method = "class")
+mod
+new <- data.frame(Sepal.Length = 5.3, Sepal.Width = 2.9)
+predict(mod, new)
+predict(mod, new, type = "class")
