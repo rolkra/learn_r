@@ -16,3 +16,8 @@ predict(mod)      # predicts
 
 library(broom)
 augment(mod)      # creates a dataframe with real values, predicted values, residuals, ...
+
+# clustering (kmeans)
+cl <- kmeans(iris[-5], 3)       # dont use species of iris, 3 centers
+table(cl$cluster, iris$Species) # compare cluster with species
+plot(iris$Sepal.Length, iris$Sepal.Width, col = cl$cluster)
