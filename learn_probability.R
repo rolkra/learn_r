@@ -24,7 +24,7 @@ rbinom(n=1, size=60, prob=1/6)
 
 # number of 6, rolling the dice 60x, 1000x
 six <- rbinom(n=1000, size=60, prob=1/6)
-hist(six, col="grey", xlim=c(0,20), breaks = c(0:20))
+hist(six, col="grey", xlim=c(0,20), breaks = c(0:30))
 
 # distribution
 x <- c(1:25)
