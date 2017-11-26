@@ -27,7 +27,7 @@ rbinom(n=1, size=60, prob=1/6)
 six <- rbinom(n=1000, size=60, prob=1/6)
 hist(six, col="grey", xlim=c(0,20), breaks = c(0:30))
 
-# distribution
+# density
 x <- c(1:25)
 y <- dbinom(x = x, size = 60, prob = 1/6) 
 plot(x,y, main = "probability\nrolling the dice 60x: number of 6")
@@ -69,7 +69,17 @@ white <- rhyper(nn = 100, m=9, n=1, k=1)
 white <- rhyper(nn = 10000, m=5, n=5, k=5)     
 plot(table(white), xlim = c(0,5))
 
-# denisity
-x <- c(1:5)
-y <- dhyper(x = x, m=5, n=5, k=5) 
-barplot(y, names.arg = x, main = "probability (hypergeomentric)\npicking n white balls out of 5 white and 5 black")
+# density 
+m = 10     # number of white balls in urn 
+n = 20     # number of black balls in urn
+k = 10     # number of balls taken out
+x <- c(1:k)
+y <- dhyper(x = x, m=m, n=n, k=k) 
+p <- barplot(y, names.arg = x, 
+             ylim = c(0, max(y)*1.2),
+             main = paste("probability (hypergeomentric)\npicking white balls out of", m, "white and", n, "black"),
+             xlab = "number of white balls",
+             ylab = "probability",
+             border = FALSE)
+text(p[,1],y, paste0(round(y*100,2),"%"), pos=3, cex = 0.8)
+
