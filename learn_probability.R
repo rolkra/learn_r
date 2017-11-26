@@ -33,6 +33,11 @@ plot(x,y, main = "probability\nrolling the dice 60x: number of 6")
 lines(x,y)
 abline(v=60*1/6, col="red", lty=2)
 
+# rolling the dice 60x, number of 6 between 8 and 10
+pbinom(10, 60, 1/6) - pbinom(7, 60, 1/6)
+dbinom(8, 60, 1/6) + dbinom(9, 60, 1/6) + dbinom(10, 60, 1/6)
+
+
 ## normal distribution
 
 # set seed to get reproducable result
