@@ -10,7 +10,7 @@ runif(n = 10, min = 1, max = 10)
 
 
 #############################################################################
-## binomial distribution
+## binomial distribution (flipping a coin)
 #############################################################################
 
 # set seed to get reproducable result
@@ -40,7 +40,7 @@ dbinom(8, 60, 1/6) + dbinom(9, 60, 1/6) + dbinom(10, 60, 1/6)
 
 
 #############################################################################
-## normal distribution
+## normal distribution (length with deviation)
 #############################################################################
 
 # set seed to get reproducable result
