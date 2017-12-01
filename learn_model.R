@@ -36,5 +36,12 @@ mod <- rpart(Species ~ Sepal.Length + Sepal.Width,
              method = "class")
 mod
 new <- data.frame(Sepal.Length = 5.3, Sepal.Width = 2.9)
-predict(mod, new)
-predict(mod, new, type = "class")
+pred <- predict(mod, new, type = "class")
+
+# confusion matrix
+conf <- table(new$Species, pred)
+conf
+
+# accuracy (percentage correct predicted)
+acc <- sum(diag(conf)) / sum(conf)
+acc
