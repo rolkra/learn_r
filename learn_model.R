@@ -31,11 +31,22 @@ plot(iris$Sepal.Length, iris$Sepal.Width, col = cl$cluster)
 #############################################################################
 
 library(rpart)
+library(rpart.plot)
+
+# create decision tree
 mod <- rpart(Species ~ Sepal.Length + Sepal.Width, 
              data = iris,
              method = "class")
 mod
-new <- data.frame(Sepal.Length = 5.3, Sepal.Width = 2.9)
+rpart.plot(mod)
+
+# Prune the tree: pruned
+pruned <- prune(mod, cp=0.05)
+pruned
+rpart.plot(pruned)
+
+# predict on new data
+new <- data.frame(Sepal.Length = 5.3, Sepal.Width = 2.9, Species = "setosa")
 pred <- predict(mod, new, type = "class")
 
 # confusion matrix
