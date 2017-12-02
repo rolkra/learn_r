@@ -100,7 +100,7 @@ xsq$observed   # observed counts (same as m)
 xsq$expected   # expected counts under the null
 xsq$residuals  # Pearson residuals
 xsq$stdres     # standardized residuals
-xsq$p.value
+xsq$p.value    # p-value (if p-value is e.g. <= 0.05, groups are different)
 
 # H0 = groups are equal
 # HA -> H0 can be rejected with probability of error p-value
