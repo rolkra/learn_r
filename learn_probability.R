@@ -83,3 +83,27 @@ p <- barplot(y, names.arg = x,
              border = FALSE)
 text(p[,1],y, paste0(round(y*100,2),"%"), pos=3, cex = 0.8)
 
+
+################################################################################
+# chisq (test if groups are different)
+################################################################################
+
+m <- as.table(rbind(c(762, 327, 468), c(484, 239, 477)))
+dimnames(M) <- list(gender = c("F", "M"),
+                    party = c("Democrat","Independent", "Republican"))
+m
+
+xsq <- chisq.test(m)  # test summary
+xsq
+
+xsq$observed   # observed counts (same as m)
+xsq$expected   # expected counts under the null
+xsq$residuals  # Pearson residuals
+xsq$stdres     # standardized residuals
+xsq$p.value
+
+# H0 = groups are equal
+# HA -> H0 can be rejected with probability of error p-value
+# if p-value <= 0.05, groups are different
+result <- ifelse(xsq$p.value <= 0.05, "different", "equal")
+print(paste("groups are", result ))
