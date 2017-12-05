@@ -107,3 +107,75 @@ xsq$p.value    # p-value (if p-value is e.g. <= 0.05, groups are different)
 # if p-value <= 0.05, groups are different
 result <- ifelse(xsq$p.value <= 0.05, "different", "equal")
 print(paste("groups are", result ))
+
+################################################################################
+# Example "The Lady Tasting Tea" (binomial distribution)
+################################################################################
+
+# 10 cups of tea, guess if milk before tea
+n <- 10
+
+# plot normal distribution
+x <- 1:10
+y <- dbinom(x, 10, 0.5)
+barplot(y, names.arg = x)
+
+# level of significance (Signifikanzniveau) 
+# for rejection area (Ablehnungsbereich) 8..10
+1 - pbinom(7, 10, 0.5)
+
+# quality (Güte) if real p = 0.8
+x <- 1:10
+y <- dbinom(x, 10, 0.5)
+y2 <- dbinom(x, 10, 0.8)
+barplot(y, names.arg = x)
+barplot(y2, names.arg = x, col=rgb(0,0,1,alpha=0.3) , add = TRUE)
+
+1 - pbinom(7, 10, 0.8)
+
+# level of significance (Signifikanzniveau) alpha = 0.05
+# significance area (Signifikanzbereich) = ?
+qbinom(1-0.05, 10, 0.5)
+sum(dbinom(9:10, 10, 0.5))
+
+# level of significance (Signifikanzniveau) alpha = 0.06
+# significance area (Signifikanzbereich) = ?
+qbinom(1-0.06, 10, 0.5)
+sum(dbinom(8:10, 10, 0.5))
+
+################################################################################
+# Example "chocolate bar" (normal distribution)
+################################################################################
+
+# chocolate bar production, 100g +/- 2g standard deviation
+# sample of 10, is production ok?
+mean <- 100
+sd <- 2
+alpha <- 0.01
+sp <- c(100,97,101,96,98,102,96,100,101,98)
+
+# H0: average of sample = 100
+# H1: average of sample != 100
+
+# Normal distribution
+x <- seq(90,110, by=0.5)
+y <- dnorm(x, mean = mean, sd = sd)
+plot(x,y, ylim=c(0,0.7))
+lines(x,y)
+abline(v=mean, col = "red", lty="dotted")
+
+# average of sample
+sp_mean <- mean(sp)
+sp_mean
+abline(v=sp_mean, col="blue", lty="dotted")
+
+# average of sample is normal distributed 
+# the bigger the sample, the smaller the distribution
+sd_mean <- sd/sqrt(10)
+x2 <- seq(97,103, by=0.2)
+y2 <- dnorm(x2, mean = mean, sd = sd_mean)
+points(x2,y2, col="red")
+lines(x2,y2, col="red")
+
+# is average of sample within the range of variation (100g) ?
+qnorm(alpha, mean = mean, sd = sd_mean)
