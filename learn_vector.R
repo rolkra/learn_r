@@ -53,6 +53,12 @@ sum (a, na.rm=TRUE)
 mean (a)
 mean (a, na.rm=TRUE)
 
+# min, max
+min(1:10)
+max(1:10)
+which.min(c(0,1,2,1,0))   # which element is the min (element nr. 1)
+which.max(c(0,1,2,1,0))   # which element is the max (element nr. 3)
+
 # range
 range(1:10)
 range(LETTERS)
