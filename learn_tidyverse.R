@@ -86,7 +86,10 @@ diamonds %>% ggplot(aes(x = carat, y = price)) + geom_point() + scale_x_log10() 
 iris %>% ggplot(aes(x = Species, y = Sepal.Length)) + geom_boxplot()
 iris %>% ggplot(aes(x = 1, y = Sepal.Length)) + geom_boxplot()
 
-# bar chart
+# bar chart (geom_col)
+iris %>% count(Species) %>% ggplot(aes(x=Species, y=n)) + geom_col()
+
+# bar chart (geom_bar)
 iris %>% ggplot(aes(Species)) + geom_bar()
 
 # percentage bar chart
