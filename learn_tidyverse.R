@@ -74,6 +74,11 @@ iris %>% ggplot(aes(x = Sepal.Length, y = Sepal.Width)) + geom_point()
 iris %>% ggplot(aes(x = Sepal.Length, y = Sepal.Width)) + geom_point() + geom_abline(intercept = -2.5, slope = 1)
 iris %>% ggplot(aes(x = Sepal.Length, y = Sepal.Width)) + geom_point(shape = 21, size = 1.5, color = "red", fill = "white")
 
+iris %>% 
+  ggplot(aes(x = Sepal.Length, y = Sepal.Width)) + 
+    geom_point() + 
+    expand_limits(y = 0)    # to ensure that point y=0 is on the plot
+
 diamonds %>% ggplot(aes(x = carat, y = price)) + geom_point() + coord_trans(x = "log10", y = "log10")
 diamonds %>% ggplot(aes(x = carat, y = price)) + geom_point() + scale_x_log10() + scale_y_log10()
 
