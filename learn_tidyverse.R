@@ -104,7 +104,6 @@ iris %>% ggplot(aes(Sepal.Length)) +
   facet_wrap(~ Species)
 
 # x and y scale 
-
 diamonds %>% ggplot(aes(x = carat, y = price)) + geom_point() + 
   coord_trans(x = "log10", y = "log10")
 
@@ -116,6 +115,10 @@ iris %>% ggplot(aes(x = Sepal.Length, y = Sepal.Width)) + geom_point() +
 
 # orientation of text on x-axis 90°
 + theme(axis.text.x = element_text(angle = 90))
+
+# title
+iris %>% count(Species) %>% ggplot(aes(x=Species, y=n)) + geom_col() + 
+  ggtitle("Iris")
 
 #############################################################################
 ## map functions
