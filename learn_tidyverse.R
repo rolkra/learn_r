@@ -79,9 +79,6 @@ iris %>%
     geom_point() + 
     expand_limits(y = 0)    # to ensure that point y=0 is on the plot
 
-diamonds %>% ggplot(aes(x = carat, y = price)) + geom_point() + coord_trans(x = "log10", y = "log10")
-diamonds %>% ggplot(aes(x = carat, y = price)) + geom_point() + scale_x_log10() + scale_y_log10()
-
 # boxplot
 iris %>% ggplot(aes(x = Species, y = Sepal.Length)) + geom_boxplot()
 iris %>% ggplot(aes(x = 1, y = Sepal.Length)) + geom_boxplot()
@@ -105,6 +102,17 @@ iris %>% ggplot(aes(Sepal.Length, fill = Species)) +
 iris %>% ggplot(aes(Sepal.Length)) +
   geom_density(color = "blue", fill = "blue") +
   facet_wrap(~ Species)
+
+# x and y scale 
+
+diamonds %>% ggplot(aes(x = carat, y = price)) + geom_point() + 
+  coord_trans(x = "log10", y = "log10")
+
+diamonds %>% ggplot(aes(x = carat, y = price)) + geom_point() + 
+  scale_x_log10() + scale_y_log10()
+
+iris %>% ggplot(aes(x = Sepal.Length, y = Sepal.Width)) + geom_point() + 
+  expand_limits(y=1)
 
 # orientation of text on x-axis 90°
 + theme(axis.text.x = element_text(angle = 90))
