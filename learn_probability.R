@@ -51,6 +51,83 @@ plot(x,y, main = "normal distribution")
 lines(x,y)
 
 
+################################################################################
+# plot_norm
+################################################################################
+
+plot_norm <- function(mean = 0, sd = 1, test_x = NA, alpha = NA, side = "both", show_text = TRUE)  {
+  
+  # plot normal distribution
+  x <- seq(mean - 3*sd, mean + 3*sd, length.out = 100)
+  y <- dnorm(x, mean = mean, sd = sd)
+  title = paste0("normal distribution: mean = ", mean, ", sd = ", sd)
+  if (!is.na(alpha) & is.na(test_x)) {
+    title = paste0(title, "\n", "alpha = ", alpha, ", side = ", side)
+  } else if (!is.na(alpha) & !is.na(test_x)) {
+    title = paste0(title, "\n", "test x = ", test_x, ", alpha = ", alpha, ", side = ", side)
+  } 
+  plot(x,y, type = "l", lwd = 4, main = title, ylab = "probability")
+  
+  # plot mean, sd, test_x
+  abline(v = mean, col = "black", lty="dotted", lwd = 1)
+  abline(v = mean - sd, col = "black", lty = "dotted", lwd = 1)
+  abline(v = mean + sd, col = "black", lty = "dotted", lwd = 1)
+  abline(h = 0, col = "darkgrey")
+  if (!is.na(test_x)) {
+    abline(v = test_x, col = "royalblue", lty = "solid", lwd = 2)
+    if (show_text)  {
+      text(test_x, max(y)*0.9, test_x, col = "blue")
+    }
+  }
+  
+  # if side both, split alpha in left and right
+  if (!is.na(alpha) & side == "both") {
+    alpha_side = alpha/2
+  } else {
+    alpha_side = alpha
+  }
+  
+  # plot alpha left side
+  if (!is.na(alpha) & (side == "both" | side == "left")) {
+  
+    x_min = qnorm(alpha_side, mean = mean, sd = sd)
+    abline(v = x_min, col = "tomato3", lty = "dotted", lwd = 1)
+    if (show_text)  {
+      text(x_min, max(y)*0.8, round(x_min,2), col = "red")
+    }
+    x_alpha <- seq(min(x), x_min, length.out = 50)
+    y_alpha <- dnorm(x_alpha, mean = mean, sd = sd)
+    x_poly <- c(min(x_alpha), x_alpha, max(x_alpha))
+    y_poly <- c(0, y_alpha, 0)
+    points(x_poly, y_poly, type = "n")
+    polygon(x_poly, y_poly, col = "tomato3", border = "tomato3", density = 40, angle = 135)
+    lines(x_alpha, y_alpha, col = "tomato3", lwd = 4)
+  } # if side
+  
+  # plot alpha right side
+  if (!is.na(alpha) & (side == "both" | side == "right")) {
+    
+    x_max = qnorm(1 - alpha_side, mean = mean, sd = sd)
+    abline(v = x_max, col = "tomato", lty = "dotted", lwd = 1)
+    if (show_text)  {
+      text(x_max, max(y)*0.8, round(x_max,2), col = "red")
+    }  
+    x_alpha <- seq(x_max, max(x), length.out = 50)
+    y_alpha <- dnorm(x_alpha, mean = mean, sd = sd)
+    x_poly <- c(min(x_alpha), x_alpha, max(x_alpha))
+    y_poly <- c(0, y_alpha, 0)
+    points(x_poly, y_poly, type = "n")
+    polygon(x_poly, y_poly, col = "tomato3", border = "tomato3", density = 40, angle = 135)
+    lines(x_alpha, y_alpha, col = "tomato3", lwd = 4)
+  } # if side
+} # plot_norm
+
+#testing
+plot_norm()
+plot_norm(mean = 100, sd = 2, alpha = 0.05, side="right", test_x = 103)
+plot_norm(mean = 100, sd = 2, alpha = 0.05, side="right", test_x = 103, show_text = FALSE)
+
+
 #############################################################################
 ## hypergeometric distribution (picking black/white balls from an urn)
 #############################################################################
