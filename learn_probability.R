@@ -56,11 +56,18 @@ lines(x,y)
 ################################################################################
 
 plot_norm <- function(mean = 0, sd = 1, test_x = NA, alpha = NA, side = "both", show_text = TRUE)  {
+
+  # definitions
+  #mean <- 100
+  #sd <- 2
+  #test_x <- NA
+  #alpha <- 0.05
+  #side <- "left" # left, right, both
   
   # plot normal distribution
   x <- seq(mean - 3*sd, mean + 3*sd, length.out = 100)
   y <- dnorm(x, mean = mean, sd = sd)
-  title = paste0("normal distribution: mean = ", mean, ", sd = ", sd)
+  title = paste0("normal distribution: mean = ", round(mean,2), ", sd = ", round(sd,2))
   if (!is.na(alpha) & is.na(test_x)) {
     title = paste0(title, "\n", "alpha = ", alpha, ", side = ", side)
   } else if (!is.na(alpha) & !is.na(test_x)) {
