@@ -52,20 +52,43 @@ lines(x,y)
 
 
 ################################################################################
-# plot_norm
+# plot_norm (plots a normal distribution)
 ################################################################################
 
-plot_norm <- function(mean = 0, sd = 1, test_x = NA, alpha = NA, side = "both", show_text = TRUE)  {
+plot_norm <- function(mean = 0, sd = 1, test_x = NA, alpha = NA, side = "both", 
+                      x_min = NA, x_max = NA, y_max = NA, 
+                      show_sd = TRUE, show_text = TRUE, color = "black", add = FALSE)  {
 
-  # definitions
-  #mean <- 100
-  #sd <- 2
-  #test_x <- NA
-  #alpha <- 0.05
-  #side <- "left" # left, right, both
+  # define xlim, ylim
+  xlim_left <- ifelse(is.na(x_min), mean - 4*sd, x_min)
+  xlim_right <- ifelse(is.na(x_max), mean + 4*sd, x_max)
+  x_all <- seq(xlim_left, xlim_right, length.out = 100)
+  y_all <- dnorm(x_all, mean = mean, sd = sd)
+  ylim_top <- ifelse(is.na(y_max), max(y_all), y_max)
   
-  # plot normal distribution
-  x <- seq(mean - 3*sd, mean + 3*sd, length.out = 100)
+  # if side both, split alpha in left and right
+  if (!is.na(alpha) & side == "both") {
+    alpha_side = alpha/2
+  } else {
+    alpha_side = alpha
+  }
+  
+  # x confidence
+  xconf_left <- qnorm(alpha_side, mean = mean, sd = sd)
+  xconf_right <- qnorm(1 - alpha_side, mean = mean, sd = sd)
+  
+  # calculate x for plotting density of normal distribution
+  if (is.na(alpha))  {
+    x <- x_all
+  } else if (!is.na(alpha) & side == "left")  {
+    x <- seq(xconf_left, xlim_right, length.out = 100)
+  } else if (!is.na(alpha) & side == "right")  {
+    x <- seq(xlim_left, xconf_right, length.out = 100)
+  } else if (!is.na(alpha) & side == "both")  {
+    x <- seq(xconf_left, xconf_right, length.out = 100)
+  } # if
+  
+  # plot density
   y <- dnorm(x, mean = mean, sd = sd)
   title = paste0("normal distribution: mean = ", round(mean,2), ", sd = ", round(sd,2))
   if (!is.na(alpha) & is.na(test_x)) {
@@ -73,25 +96,33 @@ plot_norm <- function(mean = 0, sd = 1, test_x = NA, alpha = NA, side = "both", 
   } else if (!is.na(alpha) & !is.na(test_x)) {
     title = paste0(title, "\n", "test x = ", test_x, ", alpha = ", alpha, ", side = ", side)
   } 
-  plot(x,y, type = "l", lwd = 4, main = title, ylab = "probability")
+  
+  if (!add)  {
+  plot(x,y, type = "l", lwd = 4,
+       col = color,
+       main = title, 
+       ylab = "probability",
+       xlim = c(xlim_left, xlim_right),
+       ylim = c(0, ylim_top))
+  } else  {
+    lines(x,y, lwd = 4, col = color)
+  }
   
   # plot mean, sd, test_x
   abline(v = mean, col = "black", lty="dotted", lwd = 1)
-  abline(v = mean - sd, col = "black", lty = "dotted", lwd = 1)
-  abline(v = mean + sd, col = "black", lty = "dotted", lwd = 1)
+
+  if (show_sd)  {
+    abline(v = mean - sd, col = "black", lty = "dotted", lwd = 1)
+    abline(v = mean + sd, col = "black", lty = "dotted", lwd = 1)
+  } 
+  
   abline(h = 0, col = "darkgrey")
+  
   if (!is.na(test_x)) {
     abline(v = test_x, col = "royalblue", lty = "solid", lwd = 2)
     if (show_text)  {
       text(test_x, max(y)*0.9, test_x, col = "blue")
     }
-  }
-  
-  # if side both, split alpha in left and right
-  if (!is.na(alpha) & side == "both") {
-    alpha_side = alpha/2
-  } else {
-    alpha_side = alpha
   }
   
   # plot alpha left side
@@ -102,7 +133,7 @@ plot_norm <- function(mean = 0, sd = 1, test_x = NA, alpha = NA, side = "both", 
     if (show_text)  {
       text(x_min, max(y)*0.8, round(x_min,2), col = "red")
     }
-    x_alpha <- seq(min(x), x_min, length.out = 50)
+    x_alpha <- seq(min(x_all), x_min, length.out = 50)
     y_alpha <- dnorm(x_alpha, mean = mean, sd = sd)
     x_poly <- c(min(x_alpha), x_alpha, max(x_alpha))
     y_poly <- c(0, y_alpha, 0)
@@ -119,7 +150,7 @@ plot_norm <- function(mean = 0, sd = 1, test_x = NA, alpha = NA, side = "both", 
     if (show_text)  {
       text(x_max, max(y)*0.8, round(x_max,2), col = "red")
     }  
-    x_alpha <- seq(x_max, max(x), length.out = 50)
+    x_alpha <- seq(x_max, max(x_all), length.out = 50)
     y_alpha <- dnorm(x_alpha, mean = mean, sd = sd)
     x_poly <- c(min(x_alpha), x_alpha, max(x_alpha))
     y_poly <- c(0, y_alpha, 0)
@@ -128,12 +159,6 @@ plot_norm <- function(mean = 0, sd = 1, test_x = NA, alpha = NA, side = "both", 
     lines(x_alpha, y_alpha, col = "tomato3", lwd = 4)
   } # if side
 } # plot_norm
-
-#testing
-plot_norm()
-plot_norm(mean = 100, sd = 2, alpha = 0.05, side="right", test_x = 103)
-plot_norm(mean = 100, sd = 2, alpha = 0.05, side="right", test_x = 103, show_text = FALSE)
-
 
 #############################################################################
 ## hypergeometric distribution (picking black/white balls from an urn)
