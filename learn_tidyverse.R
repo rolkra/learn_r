@@ -103,6 +103,13 @@ iris %>% ggplot(aes(Sepal.Length)) +
   geom_density(color = "blue", fill = "blue") +
   facet_wrap(~ Species)
 
+# x and y lim
+iris %>% 
+  ggplot(aes(Sepal.Length, Sepal.Width)) + 
+  geom_point() + 
+  xlim(0, 10) + 
+  ylim(0, 5)
+
 # x and y scale 
 diamonds %>% ggplot(aes(x = carat, y = price)) + geom_point() + 
   coord_trans(x = "log10", y = "log10")
