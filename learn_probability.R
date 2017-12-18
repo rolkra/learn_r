@@ -62,7 +62,7 @@ plot_norm <- function(mean = 0, sd = 1, test_x = NA, alpha = NA, side = "both",
   # define xlim, ylim
   xlim_left <- ifelse(is.na(x_min), mean - 4*sd, x_min)
   xlim_right <- ifelse(is.na(x_max), mean + 4*sd, x_max)
-  x_all <- seq(xlim_left, xlim_right, length.out = 100)
+  x_all <- seq(xlim_left, xlim_right, length.out = 200)
   y_all <- dnorm(x_all, mean = mean, sd = sd)
   ylim_top <- ifelse(is.na(y_max), max(y_all), y_max)
   
